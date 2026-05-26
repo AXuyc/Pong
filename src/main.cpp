@@ -1,21 +1,16 @@
+#include <optional>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "../include/game.h"
 
 int main()
 {
-	sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
-	sf::CircleShape shape( 100.f );
-	shape.setFillColor( sf::Color::Green );
+	sf::RenderWindow window( sf::VideoMode( { 1600, 900 } ), "Pong_Engine", sf::Style::Default );
+	
+	Game game(&window);
 
-	while ( window.isOpen() )
-	{
-		while ( const std::optional event = window.pollEvent() )
-		{
-			if ( event->is<sf::Event::Closed>() )
-				window.close();
-		}
+	CircleShape circle(100, 100, { 0.1, 0.1 }, 20);
+	game.addEntity(&circle);
 
-		window.clear();
-		window.draw( shape );
-		window.display();
-	}
+	game.gameLoop();
 }
