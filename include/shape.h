@@ -6,8 +6,8 @@ class CircleShape : public Entity
 {
 public:
 	CircleShape(double x, double y, sf::Vector2<double> velocity, double radius);
-	void update(double delta_time) override;
-	void render(const double lag, const double MS_STEP, sf::RenderWindow& window) override;
+	void update() override;
+	void render(const double lag, sf::RenderWindow& window) override;
 
 	sf::Vector2<double> borderCollision();
 private:

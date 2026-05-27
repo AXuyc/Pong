@@ -87,7 +87,7 @@ void Game::gameLoop()
 			lag -= MS_STEP;
 			for (int i = 0; i < numEntities_; ++i)
 			{
-				entities_[i]->update(std::chrono::duration<double>(MS_STEP).count());
+				entities_[i]->update();
 			}
 
 		}
@@ -98,7 +98,7 @@ void Game::gameLoop()
 		
 		for (int i = 0; i < numEntities_; ++i)
 		{
-			entities_[i]->render(std::chrono::duration<double>(lag).count(), std::chrono::duration<double>(MS_STEP).count(), *game_window);
+			entities_[i]->render(std::chrono::duration<double>(lag / MS_STEP).count(), *game_window);
 		}
 		
 

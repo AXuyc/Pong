@@ -14,8 +14,8 @@ public:
 	double x() const;
 	double y() const;
 	void set_position(double x, double y);
-	virtual void update(double delta_time) = 0;
-	virtual void render(const double lag, const double MS_STEP, sf::RenderWindow& window) = 0;
+	virtual void update() = 0;
+	virtual void render(const double lag, sf::RenderWindow& window) = 0;
 
 private:
 

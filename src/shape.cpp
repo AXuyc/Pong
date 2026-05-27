@@ -15,16 +15,16 @@ void CircleShape::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(shape_, states);
 }
 
-void CircleShape::update(double delta_time)
+void CircleShape::update()
 {
 	v_ = borderCollision();
-	this->set_position(this->x() + v_.x * delta_time * 0.001f, this->y() + v_.y * delta_time * 0.001f);
+	this->set_position(this->x() + v_.x, this->y() + v_.y);
 	shape_.setPosition({ static_cast<float>(this->x()), static_cast<float>(this->y()) });
 }
 
-void CircleShape::render(const double lag, const double MS_STEP, sf::RenderWindow& window)
+void CircleShape::render(const double residual_frame, sf::RenderWindow& window)
 {
-	this->update((lag) / (MS_STEP));
+	shape_.setPosition({ static_cast<float>(this->x() + v_.x * residual_frame), static_cast<float>(this->y() + v_.y * residual_frame) });
 	window.draw(shape_);
 }
 
@@ -43,6 +43,6 @@ sf::Vector2<double> CircleShape::borderCollision()
 		return { v_.x, -v_.y };
 	}
 
-	return { x, y };
+	return { v_.x, v_.y };
 }
 
